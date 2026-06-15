@@ -278,7 +278,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
       <b>Sustento del análisis — qué está probado y qué no:</b><br>
       • <b>Migración del 1-jun:</b> ese día el software se actualizó, dejó todo en 0 y recargó el inventario real. Esos 588 registros se excluyen (no son movimientos reales).<br>
       • <b>Ajustes duplicados / desincronizados:</b> muchos ajustes quedaron en dos líneas o el sistema no los aplicó al saldo, inflando el descuadre. Se depuran.<br>
-      • <b>Mercancía ingresada al vender:</b> en 45 momentos se hizo un ingreso o ajuste en el mismo minuto de una venta — el encargado no registraba la entrada antes. Eso crea "stock fantasma" que parece faltante.<br>
+      • <b>Mercancía ingresada al vender:</b> en 45 momentos se hizo un ingreso o ajuste en el mismo minuto de una venta — la entrada no se registraba antes. Eso hace que el sistema muestre menos de lo que hay y luego parezca un faltante que no es real.<br>
       • <b>Dos puntos de venta:</b> los traslados/cruces entre tiendas no quedan marcados en los datos, así que parte del residuo podría ser eso.<br>
       • <b>Error puntual del sistema:</b> las 4 ventas con stock negativo están en solo 2 fechas conocidas.<br>
       • <b>Probado:</b> durante ventas el inventario cuadra (solo 2 uds de descuadre en venta en todo el semestre). <b>No probable con este archivo:</b> la causa de fondo de las ~164 uds que los ajustes corrigieron (días no exportados, mercancía ingresada al vender, ajustes mal digitados). <b>Sin patrón de robo. No hay precios</b> en los datos, así que no se valora en dinero.
@@ -382,6 +382,14 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
     <div class="help" style="border-left-color:var(--accent2)"><p style="margin:0">Un <b>ajuste</b> es una corrección manual del stock que se hace tras contar físicamente. Esta sección responde: <b>¿cuánto y en qué dirección se corrigió el inventario?</b> Es clave para detectar descuadres.</p></div>
     <div class="note"><b>Dato importante:</b> el sistema a veces guarda mal el signo de los ajustes, así que aquí el efecto real se calcula como saldo final menos saldo inicial. Medido así, hubo <b>121 ajustes que SUMARON (+278 uds)</b> y solo <b>4 que RESTARON (−5 uds)</b>. Que casi todos sumen indica que el sistema venía <b>registrando de menos las existencias</b> (mercancía que entró sin anotarse), más que pérdidas. El análisis completo está en la pestaña <b>Diagnóstico / Auditoría</b>.</div>
     <div class="kpis" id="kpisAj"></div>
+    <div class="help" style="border-left-color:var(--green);margin-top:14px">
+      <h3 style="color:#56d364">Punto clave: los ajustes casi siempre SUMARON, nunca restaron</h3>
+      <ul>
+        <li>En todo el semestre: <b>121 ajustes sumaron</b> stock y solo <b>4 lo restaron</b> (−5 unidades en total).</li>
+        <li>En el conteo grande del 15-may: <b>83 subieron, 0 bajaron</b> y 77 lo dejaron igual.</li>
+      </ul>
+      <p style="margin-top:6px"><b>Qué significa esto:</b> cada vez que se contó físicamente, había <b>la misma cantidad o MÁS</b> de lo que decía el sistema — casi nunca menos. Si hubiera robo o pérdida, los conteos encontrarían <b>menos</b> de lo registrado. Aquí pasó lo contrario: el sistema venía <b>registrando de menos</b> (mercancía que entró sin anotarse). Es una de las señales más fuertes de que <b>no hay pérdida de mercancía</b>; lo que hay que corregir es el registro de las entradas.</p>
+    </div>
     <div class="grid g2" style="margin-top:18px">
       <div class="card"><h3>Ajustes por mes</h3><div class="desc">Cuántos ajustes se hicieron cada mes: total, positivos (suman) y negativos (restan).</div><div class="chart-box"><canvas id="cAjMes"></canvas></div>
         <div class="explain"><b>Cómo leerlo:</b> la barra azul es el total de ajustes del mes; la verde, cuántos sumaron stock (ingresos); la roja, cuántos restaron (salidas). El pico de mayo corresponde al día de ajustes masivos del 15-may. La diferencia entre el total y la suma de verde+roja son ajustes que no cambiaron el saldo (conteo que ya cuadraba).</div></div>
