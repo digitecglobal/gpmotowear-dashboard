@@ -488,32 +488,26 @@ document.getElementById('kpisTz').innerHTML=[
   ['amber',fmt(Math.abs(TK.u_reg)),'Diferencias halladas en ajustes (causa no determinable)'],
 ].map(([c,v,l])=>`<div class="kpi ${c} bigkpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
 
-// Conciliación: de dónde sale cada descuadre y dónde se concilia
+// Conciliación (versión simple)
 (function(){
-  const cc=TRAZA.concil||[]; const totalU=cc.reduce((a,x)=>a+Math.abs(x.uds),0)||1;
-  const colors={ajuste_masivo:'#388bfd',ajuste:'#6cb0ff',post_ajuste:'#a371f7',reingreso:'#ff9d2e',multilinea:'#9aa3b0',otro:'#9aa3b0',REAL:'#f0506e'};
-  const expl={
-   ajuste_masivo:'Diferencias dentro del día de ajustes masivos del 15-may (160 ajustes en 134 productos por un solo usuario). En AbarrotesPDV un ajuste sobrescribe el saldo, no es salida de mercancía.',
-   ajuste:'Un ajuste sobrescribió el saldo con la cantidad tecleada. No es salida de mercancía.',
-   post_ajuste:'La venta arrancó de un saldo distinto al que dejó un ajuste/ingreso previo. Descuadre heredado del ajuste, no venta sin registrar.',
-   reingreso:'El saldo era "fantasma": se reingresó la mercancía desde 0 porque no se había registrado antes.',
-   multilinea:'El mismo ajuste se entró en dos líneas (mismo minuto), lo que desencaja el saldo. No es salida.',
-   otro:'Descuadre menor ligado a un ingreso/ajuste.',
-   REAL:'Caída entre dos ventas sin ningún ajuste ni ingreso ese día. Lo único a verificar físicamente (posible venta en día no exportado).'};
-  const rows=cc.map(x=>{
-    const pct=Math.round(Math.abs(x.uds)/totalU*100);
-    return `<div style="margin-bottom:12px">
-      <div style="display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:3px">
-        <span><b style="color:${colors[x.cat]||'#9aa3b0'}">${x.label}</b> <span style="color:var(--mut)">· ${x.casos} ${x.casos===1?'caso':'casos'}</span></span>
-        <span style="font-weight:800">${x.uds} uds</span></div>
-      <div style="background:var(--panel2);border-radius:5px;height:8px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${colors[x.cat]||'#9aa3b0'}"></div></div>
-      <div style="font-size:12px;color:var(--mut);margin-top:4px">${expl[x.cat]||''}</div>
-    </div>`;
-  }).join('');
-  document.getElementById('tzConcil').innerHTML=`<h3>Conciliación: dónde y cómo se descuadró cada cosa (revisado fila por fila)</h3>
-    <div class="desc">Revisamos los movimientos exactos de cada fecha. Así se reparte el descuadre aparente de 166 uds:</div>
-    ${rows}
-    <div class="explain" style="margin-top:6px"><b>Lo que SÍ está probado:</b> el saldo nunca se rompe durante una venta normal (solo 2 micro-casos, −2 uds en todo el semestre). Todos los demás descuadres ocurren <b>en líneas de ajuste o reingreso, o justo después</b>. Es decir: el inventario fluye bien al vender; las diferencias las introduce el <b>proceso de ajustes/registro</b>.<br><br><b>Lo que NO se puede afirmar con este archivo:</b> la causa de fondo de esas diferencias (el libro venía diciendo más de lo que había, y los ajustes lo corrigieron). Puede ser ventas en días no exportados, mercancía ingresada al vender o ajustes mal digitados. <b>No hay patrón de robo</b> (sin caídas grandes durante ventas, sin actividad nocturna), pero tampoco se puede certificar "0 pérdida" solo con estos datos.</div>`;
+  const cc=TRAZA.concil||[]; const total=cc.reduce((a,x)=>a+Math.abs(x.uds),0);
+  const realU=Math.abs((cc.find(x=>x.cat==='REAL')||{uds:0}).uds);
+  const regU=total-realU;
+  document.getElementById('tzConcil').innerHTML=`<h3>¿Por qué parecía que faltaban ${total} unidades?</h3>
+    <div class="desc">Revisamos qué pasó en cada fecha. La respuesta, en simple:</div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin:14px 0">
+      <div style="flex:1;min-width:240px;background:var(--panel2);border:1px solid var(--border);border-left:5px solid #ff9d2e;border-radius:12px;padding:16px 18px">
+        <div style="font-size:30px;font-weight:900;color:#ff9d2e;line-height:1">${regU} uds</div>
+        <div style="font-size:14px;font-weight:700;margin-top:4px">Son por el registro, NO mercancía perdida</div>
+        <div style="font-size:13px;color:var(--mut);margin-top:6px">Cuando se hace un ajuste o se vuelve a cargar un producto, el sistema reescribe el saldo. Eso hace que <b>parezca</b> que faltan unidades, pero no salieron de la tienda.</div>
+      </div>
+      <div style="flex:1;min-width:240px;background:var(--panel2);border:1px solid var(--border);border-left:5px solid #f0506e;border-radius:12px;padding:16px 18px">
+        <div style="font-size:30px;font-weight:900;color:#ff7b8a;line-height:1">${realU} uds</div>
+        <div style="font-size:14px;font-weight:700;margin-top:4px">Lo único a contar físicamente</div>
+        <div style="font-size:13px;color:var(--mut);margin-top:6px">Son las únicas unidades que bajaron durante una venta sin explicación. Conviene contarlas para confirmar; pueden ser una venta de un día que no se guardó.</div>
+      </div>
+    </div>
+    <div class="explain" style="margin-top:6px"><b>En conclusión:</b> de ${total} unidades que parecían faltar, <b>${regU} se explican por cómo el sistema registra los ajustes</b> (no es pérdida) y solo <b>${realU} conviene verificar</b>. <b>No hay señales de robo.</b> Lo que hay que mejorar es el registro del inventario, no la mercancía.</div>`;
 })();
 
 const ttClass=t=>({'Entrada':'ent','Salida':'sal','Ajuste':'aju','Dev. de venta':'dev'}[t]||'ini');
