@@ -158,7 +158,6 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
       <li><b>Ventas y productos:</b> cuánto se vendió y cuáles son los productos estrella.</li>
       <li><b>Inventario y reposición:</b> qué hay en stock, qué se agotó y qué no rota.</li>
       <li><b>Ajustes y mermas:</b> las correcciones de inventario y lo que revelan.</li>
-      <li><b>Desempeño por cajero:</b> qué movimientos hizo cada usuario.</li>
     </ul>
   </div>
 
@@ -186,7 +185,6 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
     <div class="tab" data-p="inventario">Inventario y reposición</div>
     <div class="tab" data-p="traza">Trazabilidad por producto</div>
     <div class="tab" data-p="ajustes">Ajustes y mermas</div>
-    <div class="tab" data-p="cajeros">Desempeño por cajero</div>
   </div>
 
   <!-- AUDITORIA -->
@@ -289,7 +287,6 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
 
   <!-- VENTAS -->
   <section class="panel-section" id="p-ventas">
-    <div class="help" style="border-left-color:var(--accent2)"><p style="margin:0">Esta sección responde: <b>¿cuánto se vendió y qué se vende más?</b> Las unidades son cantidad de productos (no dinero — el sistema no tiene precios).</p></div>
     <div class="grid g2">
       <div class="card"><h3>Unidades vendidas por mes</h3><div class="desc">Total de productos vendidos en cada mes.</div><div class="chart-box"><canvas id="cMes"></canvas></div>
         <div class="explain"><b>Cómo leerlo:</b> cada barra es un mes; más alta = más unidades vendidas. <b>Ojo:</b> los meses no tienen los mismos días registrados (febrero solo 11, junio 10), así que para comparar de forma justa mira la gráfica de al lado (promedio por día).</div></div>
@@ -395,22 +392,6 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
     </div>
   </section>
 
-  <!-- CAJEROS -->
-  <section class="panel-section" id="p-cajeros">
-    <div class="help" style="border-left-color:var(--accent2)"><p style="margin:0">Esta sección responde: <b>¿quién hizo qué en el sistema?</b> Es la base del hallazgo de control más importante: una sola persona concentra las ventas y otra (un usuario genérico) concentra todos los ajustes. Ver detalle en <b>Diagnóstico / Auditoría</b>.</p></div>
-    <div class="grid g2">
-      <div class="card"><h3>Unidades vendidas por cajero</h3><div class="desc">Qué parte de las ventas hizo cada usuario.</div><div class="chart-box"><canvas id="cCajVenta"></canvas></div>
-        <div class="explain"><b>Cómo leerlo:</b> cada porción del círculo es un usuario. Paula Gómez concentra la gran mayoría de las ventas.</div></div>
-      <div class="card"><h3>Actividad por tipo de movimiento</h3><div class="desc">Cuántas ventas, ajustes y entradas hizo cada usuario.</div><div class="chart-box"><canvas id="cCajAct"></canvas></div>
-        <div class="explain"><b>Lo importante:</b> fíjate en los ajustes — los concentra el usuario "Administrador de la Tienda". Que una misma cuenta venda y además ajuste el inventario es un riesgo de control.</div></div>
-    </div>
-    <div class="card full" style="margin-top:18px">
-      <h3>Detalle por cajero</h3><div class="desc">Resumen de todos los movimientos de cada usuario.</div>
-      <div class="explain" style="margin-top:0;margin-bottom:12px"><b>Cómo leer la tabla:</b> "Uds vendidas" = piezas vendidas; "Neto ajuste" = unidades que sumó/restó al corregir inventario; "Entradas" = veces que ingresó mercancía. "Administrador de la Tienda" es un login genérico, no una persona identificable.</div>
-      <div class="scroll"><table id="tCaj"><thead><tr><th>Cajero</th><th class="num">Uds vendidas</th><th class="num">Líneas venta</th><th class="num">Devol.</th><th class="num">Líneas ajuste</th><th class="num">Neto ajuste</th><th class="num">Líneas entrada</th></tr></thead><tbody></tbody></table></div>
-    </div>
-  </section>
-
   <footer>GP MotoWear · Generado automáticamente a partir de 101 archivos diarios de movimientos · Semestre 2026</footer>
 </div>
 
@@ -497,16 +478,6 @@ new Chart(cAjMes,{type:'bar',data:{labels:meses,datasets:[
 document.querySelector('#tSob tbody').innerHTML=DATA.ajuste_top_sobrantes.map(a=>`<tr><td>${a.codigo}</td><td>${a.nombre}</td><td class="num">${a.lineas}</td><td class="num"><span class="pill green">+${a.neto}</span></td></tr>`).join('');
 
 // ===== CAJEROS =====
-const cajL=DATA.cajeros.map(c=>c.cajero);
-new Chart(cCajVenta,{type:'doughnut',data:{labels:cajL,datasets:[{data:DATA.cajeros.map(c=>c.venta_unid),backgroundColor:[C.orange,C.blue,C.purple,C.green,C.amber]}]},
- options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-new Chart(cCajAct,{type:'bar',data:{labels:cajL,datasets:[
-  {label:'Venta',data:DATA.cajeros.map(c=>c.venta_lineas),backgroundColor:C.orange,borderRadius:5},
-  {label:'Ajuste',data:DATA.cajeros.map(c=>c.ajuste_lineas),backgroundColor:C.amber,borderRadius:5},
-  {label:'Entrada',data:DATA.cajeros.map(c=>c.entrada_lineas),backgroundColor:C.blue,borderRadius:5}]},
- options:{maintainAspectRatio:false,scales:{y:{grid:{color:C.grid},beginAtZero:true},x:{grid:{display:false}}}}});
-document.querySelector('#tCaj tbody').innerHTML=DATA.cajeros.map(c=>`<tr><td><b>${c.cajero}</b></td><td class="num">${fmt(c.venta_unid)}</td><td class="num">${c.venta_lineas}</td><td class="num">${c.devol}</td><td class="num">${c.ajuste_lineas}</td><td class="num">+${c.ajuste_neto}</td><td class="num">${c.entrada_lineas}</td></tr>`).join('');
-
 // ===== TRAZABILIDAD =====
 const TZ=TRAZA.prods, TK=TRAZA.kpi;
 document.getElementById('kpisTz').innerHTML=[
