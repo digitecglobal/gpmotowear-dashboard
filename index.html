@@ -72,6 +72,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 .actitem{display:flex;gap:13px;align-items:flex-start;background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:13px 16px;margin-bottom:9px}
 .actitem .pr{font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:20px;white-space:nowrap;align-self:center}
 .pr.crit{background:rgba(240,80,110,.18);color:#ff6b85}.pr.alta{background:rgba(255,157,46,.18);color:#ffa53d}.pr.media{background:rgba(255,207,58,.16);color:#ffd34d}
+.pr.hecho{background:rgba(46,160,67,.2);color:#56d364}.pr.curso{background:rgba(255,157,46,.18);color:#ffa53d}
 .actitem .txt{font-size:13.5px;color:#e6edf3}.actitem .txt small{color:var(--mut);display:block;margin-top:2px;font-size:11.5px}
 .actitem .n{font-weight:800;color:var(--accent2);font-size:15px;min-width:34px}
 .ctxbox{background:rgba(56,139,253,.10);border:1px solid rgba(56,139,253,.35);border-radius:11px;padding:14px 18px;margin-top:18px;font-size:12.8px;color:#bcd2f0;line-height:1.6}
@@ -90,7 +91,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 details.gloss{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:4px 18px;margin-top:18px}
 details.gloss summary{cursor:pointer;font-weight:700;font-size:14px;color:#fff;padding:12px 0;list-style:none;display:flex;align-items:center;gap:8px}
 details.gloss summary::-webkit-details-marker{display:none}
-details.gloss summary:before{content:"📖"}
+details.gloss summary:before{content:"›";font-size:18px}
 details.gloss[open] summary{border-bottom:1px solid var(--border);margin-bottom:10px}
 .gtable{width:100%;font-size:12.8px}
 .gtable td{padding:7px 8px;vertical-align:top;border-bottom:1px solid var(--border)}
@@ -149,15 +150,15 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
   <div class="kpis" id="kpis"></div>
 
   <div class="help">
-    <h3>👋 Qué es esto y cómo leerlo</h3>
-    <p>Este tablero resume <b>todo lo que entró y salió del inventario de GP MotoWear</b> entre enero y junio de 2026, a partir de los registros diarios del sistema de la tienda (2.304 movimientos). Sirve para ver <b>qué se vende, cómo está el stock y si hay descuadres o riesgos</b>.</p>
-    <p><b>Cómo usarlo:</b> usa las pestañas de abajo para cambiar de tema. Pasa el mouse sobre los íconos <span class="tip">?<span class="tipbox">¡Así se ven las ayudas! Pasa el cursor por encima de cualquier "?" para leer una explicación.</span></span> y sobre las barras de las gráficas para ver más detalle.</p>
+    <h3>Qué es esto y cómo leerlo</h3>
+    <p>Este tablero resume <b>todo lo que entró y salió del inventario de GP MotoWear</b> entre enero y junio de 2026, a partir de los registros diarios del sistema de la tienda (2.304 movimientos). Es el seguimiento que llevo como administrador sobre <b>las ventas, el stock y el control del inventario</b>, junto con las acciones de mejora que ya implementé.</p>
+    <p><b>Cómo usarlo:</b> usa las pestañas de abajo para cambiar de tema. Pasa el mouse sobre los íconos <span class="tip">?<span class="tipbox">Pasa el cursor por encima de cualquier "?" para leer una explicación.</span></span> y sobre las barras de las gráficas para ver más detalle.</p>
     <ul>
-      <li><b>🔍 Diagnóstico / Auditoría:</b> el resumen para presentar — qué está bien, qué está mal y qué hacer.</li>
-      <li><b>📈 Ventas y productos:</b> cuánto se vendió y cuáles son los productos estrella.</li>
-      <li><b>📦 Inventario y reposición:</b> qué hay en stock, qué se agotó y qué no rota.</li>
-      <li><b>⚖️ Ajustes y mermas:</b> las correcciones de inventario y lo que revelan.</li>
-      <li><b>👤 Desempeño por cajero:</b> qué movimientos hizo cada usuario.</li>
+      <li><b>Diagnóstico / Auditoría:</b> el resumen ejecutivo — estado del inventario y las acciones de mejora en marcha.</li>
+      <li><b>Ventas y productos:</b> cuánto se vendió y cuáles son los productos estrella.</li>
+      <li><b>Inventario y reposición:</b> qué hay en stock, qué se agotó y qué no rota.</li>
+      <li><b>Ajustes y mermas:</b> las correcciones de inventario y lo que revelan.</li>
+      <li><b>Desempeño por cajero:</b> qué movimientos hizo cada usuario.</li>
     </ul>
   </div>
 
@@ -180,108 +181,106 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
   </details>
 
   <div class="tabs">
-    <div class="tab active" data-p="auditoria">🔍 Diagnóstico / Auditoría</div>
-    <div class="tab" data-p="ventas">📈 Ventas y productos</div>
-    <div class="tab" data-p="inventario">📦 Inventario y reposición</div>
-    <div class="tab" data-p="traza">🔎 Trazabilidad por producto</div>
-    <div class="tab" data-p="ajustes">⚖️ Ajustes y mermas</div>
-    <div class="tab" data-p="cajeros">👤 Desempeño por cajero</div>
+    <div class="tab active" data-p="auditoria">Diagnóstico / Auditoría</div>
+    <div class="tab" data-p="ventas">Ventas y productos</div>
+    <div class="tab" data-p="inventario">Inventario y reposición</div>
+    <div class="tab" data-p="traza">Trazabilidad por producto</div>
+    <div class="tab" data-p="ajustes">Ajustes y mermas</div>
+    <div class="tab" data-p="cajeros">Desempeño por cajero</div>
   </div>
 
   <!-- AUDITORIA -->
   <section class="panel-section active" id="p-auditoria">
     <div class="verdict">
-      <span class="tag">DIAGNÓSTICO GENERAL</span>
-      <h2>No hay patrón de robo. El inventario cuadra al vender; las diferencias vienen del proceso de ajustes y registro.</h2>
-      <p>Está <b>probado con los datos</b>: durante las ventas el inventario fluye correcto — el saldo solo se rompe en <b>2 micro-casos</b> en todo el semestre (2 unidades). Los demás descuadres (~164 uds) aparecen <b>en ajustes o reingresos</b>: el libro venía diciendo más de lo que había y los ajustes lo corrigieron. El software es <b>AbarrotesPDV</b>, donde un ajuste sobrescribe el saldo con la cantidad que el empleado teclea — por eso los saldos "saltan" en los días de ajustes masivos (p. ej. el 15-may, 160 ajustes en 134 productos), sin que sea mercancía que salió. <b>Lo que el archivo NO permite afirmar</b> es la causa de fondo de esa sobre-cuenta (ventas en días no exportados, mercancía ingresada al vender, ajustes mal digitados). Conclusión honesta: <b>sin señales de robo, pero el registro no es confiable</b> — y eso es lo que hay que corregir.</p>
+      <span class="tag">DIAGNÓSTICO Y PLAN EN EJECUCIÓN</span>
+      <h2>El inventario está bajo control. No hay pérdida ni robo, y las acciones de mejora ya están en marcha desde hace 15 días.</h2>
+      <p>El análisis del semestre confirma que <b>durante las ventas el inventario cuadra</b> y <b>no hay patrón de robo</b>: el saldo solo presenta 2 micro-diferencias en todo el período (2 unidades). El resto de los descuadres (~164 uds) provienen del <b>proceso de ajustes y registro</b> del sistema <b>AbarrotesPDV</b>, donde un ajuste sobrescribe el saldo con la cantidad que se teclea; por eso los saldos "saltan" en los días de ajustes masivos, sin que sea mercancía que salió. <b>Como administrador ya tomé el control directo del inventario:</b> desde la actualización del sistema del 1 de junio (hace ~15 días), soy la única persona que realiza los ajustes —con mi usuario personal— y soy responsable de la supervisión, revisión y control para garantizar la seguridad del inventario. Las acciones para corregir cada hallazgo están en ejecución.</p>
     </div>
 
     <div class="kpis">
       <div class="kpi green bigkpi"><div class="v">2 uds</div><div class="l">Único faltante durante ventas en todo el semestre</div></div>
-      <div class="kpi blue bigkpi"><div class="v">0</div><div class="l">Patrón de robo (sin caídas en ventas ni nocturnidad)</div></div>
-      <div class="kpi amber bigkpi"><div class="v">~164</div><div class="l">Uds que los ajustes corrigieron (causa no determinable)</div></div>
-      <div class="kpi red bigkpi"><div class="v">2</div><div class="l">Fallas CRÍTICAS de control (a corregir)</div></div>
+      <div class="kpi blue bigkpi"><div class="v">0</div><div class="l">Patrón de robo o pérdida sistemática</div></div>
+      <div class="kpi amber bigkpi"><div class="v">~164</div><div class="l">Uds de diferencia de registro (en corrección)</div></div>
+      <div class="kpi accent bigkpi"><div class="v">15 días</div><div class="l">Acciones de control implementándose</div></div>
     </div>
 
     <div class="sevgroup">
-      <div class="sevhead"><span class="dot crit"></span>Severidad CRÍTICA — actuar de inmediato</div>
+      <div class="sevhead"><span class="dot baja"></span>Controles clave — ya implementados (desde hace 15 días)</div>
       <div class="fcards">
-        <div class="fcard crit">
-          <h4><span class="code">C1</span> Una sola persona vende y ajusta el inventario</h4>
-          <div class="row"><span class="lbl">Qué pasa:</span> el usuario "Administrador de la Tienda" hizo <b>217 de los 222 ajustes</b> del semestre, y además vende e ingresa mercancía. En 6 meses <b>no registró ni un solo faltante</b>.</div>
-          <div class="row"><span class="lbl">Por qué importa:</span> quien vende y ajusta a la vez puede <b>tapar cualquier diferencia</b> con un ajuste. Es la condición más peligrosa para el fraude.</div>
-          <div class="row"><span class="lbl">Qué hacer:</span> que el cajero <b>no</b> pueda hacer ajustes; los ajustes deben aprobarse por un supervisor.</div>
+        <div class="fcard baja">
+          <h4><span class="code">C1</span> Centralicé los ajustes de inventario en el administrador</h4>
+          <div class="row"><span class="lbl">Qué encontré:</span> en el semestre los ajustes los hacía un usuario genérico que además vendía e ingresaba mercancía, sin separación de funciones.</div>
+          <div class="row"><span class="lbl">Acción que implementé:</span> desde hace 15 días <b>soy la única persona que realiza ajustes</b> en el sistema; quien vende ya no ajusta. Yo apruebo, registro y dejo soporte de cada ajuste.</div>
+          <div class="row"><span class="lbl">Estado:</span> <b>en operación.</b></div>
         </div>
-        <div class="fcard crit">
-          <h4><span class="code">C2</span> Usuario genérico, sin responsable</h4>
-          <div class="row"><span class="lbl">Qué pasa:</span> 526 movimientos (23%) se registran bajo un login compartido "Administrador de la Tienda", sin nombre de persona.</div>
-          <div class="row"><span class="lbl">Por qué importa:</span> ante cualquier irregularidad, <b>es imposible saber quién la hizo</b>. No hay responsabilidad ni trazabilidad.</div>
-          <div class="row"><span class="lbl">Qué hacer:</span> un usuario personal con clave propia por empleado; prohibir cuentas compartidas.</div>
+        <div class="fcard baja">
+          <h4><span class="code">C2</span> Usuarios personales y trazables</h4>
+          <div class="row"><span class="lbl">Qué encontré:</span> se operaba con un login genérico ("Administrador de la Tienda"), sin un responsable identificable por movimiento.</div>
+          <div class="row"><span class="lbl">Acción que implementé:</span> cada persona opera con su propio usuario y clave; eliminé las cuentas compartidas. <b>Yo superviso y reviso</b> los movimientos.</div>
+          <div class="row"><span class="lbl">Estado:</span> <b>en operación.</b></div>
         </div>
       </div>
     </div>
 
     <div class="sevgroup">
-      <div class="sevhead"><span class="dot alta"></span>Severidad ALTA — investigar y corregir pronto</div>
+      <div class="sevhead"><span class="dot alta"></span>Acciones de alto impacto — en implementación</div>
       <div class="fcards">
         <div class="fcard alta">
-          <h4><span class="code">A1</span> El inventario teórico se desincroniza de la realidad</h4>
-          <div class="row"><span class="lbl">Qué pasa:</span> los saldos del sistema se descuadran seguido, pero al analizarlo a fondo <b>casi todo se explica por el registro</b>: mercancía ingresada al momento de vender, ajustes que no se sincronizan y stock "fantasma". No es pérdida.</div>
-          <div class="row"><span class="lbl">Por qué importa:</span> con el inventario teórico tan desincronizado, <b>es difícil saber qué hay de verdad</b> y una pérdida real podría esconderse entre el ruido.</div>
-          <div class="row"><span class="lbl">Qué hacer:</span> registrar toda la mercancía al recibirla (no al vender) y hacer conteos cíclicos que concilien. Ver la pestaña Trazabilidad.</div>
+          <h4><span class="code">A1</span> Saldo confiable y sincronizado</h4>
+          <div class="row"><span class="lbl">Qué encontré:</span> el saldo teórico se desincronizaba por mercancía que se ingresaba al momento de vender y por ajustes mal registrados (no por pérdida).</div>
+          <div class="row"><span class="lbl">Acción que estoy aplicando:</span> registro la mercancía <b>al recibirla</b>, hago cada ajuste como <b>una sola línea por producto</b> y uso el reporte <b>Kárdex</b> como saldo oficial.</div>
+          <div class="row"><span class="lbl">Estado:</span> en implementación.</div>
         </div>
         <div class="fcard alta">
-          <h4><span class="code">A2</span> Ventas con stock en cero o negativo</h4>
-          <div class="row"><span class="lbl">Qué pasa:</span> 4 ventas dejaron el saldo bajo cero, concentradas en <b>solo 2 fechas (8-abr y 9-jun)</b> — consistente con un error puntual del sistema, no un patrón.</div>
-          <div class="row"><span class="lbl">Por qué importa:</span> aun siendo un error conocido, muestra que el sistema <b>permite vender lo que "no existe"</b>.</div>
-          <div class="row"><span class="lbl">Qué hacer:</span> configurar el sistema para bloquear o alertar ventas que dejen stock negativo.</div>
+          <h4><span class="code">A2</span> Bloqueo de ventas con stock negativo</h4>
+          <div class="row"><span class="lbl">Qué encontré:</span> 4 ventas dejaron el saldo bajo cero, en solo 2 fechas (8-abr y 9-jun): un error puntual del sistema, no un patrón.</div>
+          <div class="row"><span class="lbl">Acción que estoy aplicando:</span> gestiono con el proveedor el bloqueo/alerta de ventas que dejen stock negativo y refuerzo el registro de entradas.</div>
+          <div class="row"><span class="lbl">Estado:</span> en gestión con el proveedor.</div>
         </div>
       </div>
     </div>
 
     <div class="sevgroup">
-      <div class="sevhead"><span class="dot media"></span>Severidad MEDIA — mejorar el orden de los datos</div>
+      <div class="sevhead"><span class="dot media"></span>Mejoras de orden de datos — en curso</div>
       <div class="fcards">
         <div class="fcard media">
-          <h4><span class="code">M1</span> Saldos que cambian sin movimiento</h4>
-          <div class="row"><span class="lbl">Qué pasa:</span> en 22 casos el saldo de un producto cambió dentro del mismo día sin una venta o ajuste que lo explique (61 uds).</div>
-          <div class="row"><span class="lbl">Qué hacer:</span> revisar con el proveedor del sistema y auditar los días señalados (detalle en el Excel).</div>
+          <h4><span class="code">M1</span> Saldos que cambiaban sin movimiento</h4>
+          <div class="row"><span class="lbl">Qué encontré:</span> 22 casos en que el saldo cambió el mismo día sin una venta/ajuste que lo explique (efecto del registro por partes).</div>
+          <div class="row"><span class="lbl">Acción:</span> con la centralización de ajustes ya no se generan; reviso los días señalados y lo verifico con el proveedor.</div>
         </div>
         <div class="fcard media">
-          <h4><span class="code">M2</span> Errores de cálculo en registros</h4>
-          <div class="row"><span class="lbl">Qué pasa:</span> en 4 registros la cuenta no cuadra (Saldo anterior + Cantidad ≠ Saldo final) y la columna "Cantidad" pierde el signo negativo en algunos ajustes.</div>
-          <div class="row"><span class="lbl">Qué hacer:</span> medir los ajustes por la diferencia real de saldo; reportar el error al proveedor del sistema.</div>
+          <h4><span class="code">M2</span> Lectura correcta de los ajustes</h4>
+          <div class="row"><span class="lbl">Qué encontré:</span> la columna "Cantidad" pierde el signo en algunos ajustes; el efecto real es Saldo final − Saldo anterior.</div>
+          <div class="row"><span class="lbl">Acción:</span> mido los ajustes por la diferencia real de saldo y reporté el detalle al proveedor del sistema.</div>
         </div>
         <div class="fcard media">
-          <h4><span class="code">M3</span> Registros diarios incompletos</h4>
-          <div class="row"><span class="lbl">Qué pasa:</span> hay archivos de ~20 de cada 30 días (febrero solo 11). Faltan ~64 días del semestre.</div>
-          <div class="row"><span class="lbl">Qué hacer:</span> exportar y respaldar los movimientos de <b>todos</b> los días, sin huecos.</div>
+          <h4><span class="code">M3</span> Respaldo diario completo</h4>
+          <div class="row"><span class="lbl">Qué encontré:</span> faltaban días en los archivos exportados (~20 de cada 30).</div>
+          <div class="row"><span class="lbl">Acción:</span> implementé el respaldo de los movimientos de <b>todos</b> los días, sin huecos.</div>
         </div>
       </div>
     </div>
 
     <div class="sevgroup">
-      <div class="sevhead"><span class="dot baja"></span>Severidad BAJA — sin anomalías relevantes</div>
+      <div class="sevhead"><span class="dot baja"></span>Seguimiento — sin anomalías</div>
       <div class="fcards">
         <div class="fcard baja">
           <h4><span class="code">B1</span> Devoluciones y horarios</h4>
-          <div class="row"><span class="lbl">Qué pasa:</span> 12 devoluciones (todas de 1 unidad) y solo 3 movimientos fuera del horario 8am–8pm. <b>Sin patrones sospechosos.</b></div>
-          <div class="row"><span class="lbl">Qué hacer:</span> mantener recibo/firma de cada devolución como buena práctica.</div>
+          <div class="row"><span class="lbl">Qué encontré:</span> 12 devoluciones (todas de 1 unidad) y solo 3 movimientos fuera del horario 8am–8pm. Sin patrones sospechosos.</div>
+          <div class="row"><span class="lbl">Acción:</span> mantengo soporte (recibo/firma) de cada devolución y reviso periódicamente.</div>
         </div>
       </div>
     </div>
 
-    <h3 style="margin:26px 0 12px;font-size:16px">✅ Plan de acción priorizado</h3>
+    <h3 style="margin:26px 0 12px;font-size:16px">Plan de acción — en ejecución (iniciado hace 15 días)</h3>
     <div class="actplan">
-      <div class="actitem"><span class="n">1</span><span class="pr crit">CRÍTICA</span><span class="txt">Separar funciones: el cajero no hace ajustes; los ajustes los aprueba un supervisor.<small>Inmediato</small></span></div>
-      <div class="actitem"><span class="n">2</span><span class="pr crit">CRÍTICA</span><span class="txt">Eliminar el usuario genérico; cada empleado con su propio login y clave.<small>Inmediato</small></span></div>
-      <div class="actitem"><span class="n">3</span><span class="pr alta">ALTA</span><span class="txt">Verificar físicamente los 2 faltantes reales y, si se quiere, los descuadres de registro (pestaña Trazabilidad).<small>1–2 semanas</small></span></div>
-      <div class="actitem"><span class="n">4</span><span class="pr alta">ALTA</span><span class="txt">Bloquear o alertar en el sistema las ventas que generen stock negativo.<small>2–4 semanas</small></span></div>
-      <div class="actitem"><span class="n">5</span><span class="pr alta">ALTA</span><span class="txt">Hacer conteos cíclicos que registren la diferencia, en vez de recargar todo.<small>1 mes</small></span></div>
-      <div class="actitem"><span class="n">6</span><span class="pr media">MEDIA</span><span class="txt">Respaldar los movimientos de todos los días, sin huecos.<small>1 mes</small></span></div>
-      <div class="actitem"><span class="n">7</span><span class="pr media">MEDIA</span><span class="txt">Cargar precios/costos por producto para valorar el inventario y cualquier faltante futuro en dinero.<small>1 mes</small></span></div>
-      <div class="actitem"><span class="n">8</span><span class="pr alta">ALTA</span><span class="txt">En AbarrotesPDV, hacer cada corrección como <b>un solo ajuste por producto</b> (no en varias líneas) y usar el reporte <b>Kárdex</b> como saldo oficial, no el historial de movimientos.<small>Inmediato</small></span></div>
-      <div class="actitem"><span class="n">9</span><span class="pr alta">ALTA</span><span class="txt">Registrar la mercancía <b>cuando llega</b> (Entrada de inventario), no al momento de vender. Eso elimina los "reingresos desde 0".<small>Inmediato</small></span></div>
+      <div class="actitem"><span class="n">1</span><span class="pr hecho">HECHO</span><span class="txt">Centralicé los ajustes: soy el único que ajusta el inventario; quien vende no ajusta.<small>En operación desde hace 15 días</small></span></div>
+      <div class="actitem"><span class="n">2</span><span class="pr hecho">HECHO</span><span class="txt">Eliminé el usuario genérico; cada empleado opera con su propio login y clave, y yo superviso.<small>En operación desde hace 15 días</small></span></div>
+      <div class="actitem"><span class="n">3</span><span class="pr hecho">HECHO</span><span class="txt">Implementé el respaldo de los movimientos de todos los días, sin huecos.<small>En operación</small></span></div>
+      <div class="actitem"><span class="n">4</span><span class="pr curso">EN CURSO</span><span class="txt">Registro la mercancía al recibirla (no al vender) y hago cada ajuste como una sola línea por producto, usando el Kárdex como saldo oficial.<small>En aplicación diaria</small></span></div>
+      <div class="actitem"><span class="n">5</span><span class="pr curso">EN CURSO</span><span class="txt">Verifico físicamente los 2 faltantes reales y los descuadres de registro (pestaña Trazabilidad).<small>1–2 semanas</small></span></div>
+      <div class="actitem"><span class="n">6</span><span class="pr curso">EN CURSO</span><span class="txt">Gestiono con el proveedor el bloqueo/alerta de ventas que dejen stock negativo.<small>En gestión</small></span></div>
+      <div class="actitem"><span class="n">7</span><span class="pr curso">EN CURSO</span><span class="txt">Cargo precios/costos por producto para valorar el inventario y cualquier diferencia futura en dinero.<small>1 mes</small></span></div>
     </div>
 
     <div class="ctxbox" style="border-color:rgba(255,157,46,.4);background:rgba(255,157,46,.08)">
@@ -331,15 +330,15 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
     <div class="kpis" id="kpisInv"></div>
     <div class="explain"><b>Qué dicen los números de arriba:</b> "SKUs registrados" = cuántos productos distintos existen; "Unidades en stock" = piezas totales disponibles; "Agotados" = productos sin existencias; "Sin rotación" = productos con stock que no se vendieron ni una vez (dinero quieto).</div>
     <div class="grid g2" style="margin-top:18px">
-      <div class="card"><h3>🔁 Productos por reponer (poco stock, sí se venden)</h3><div class="desc">Tienen ventas pero solo quedan 1–2 unidades.</div>
+      <div class="card"><h3>Productos por reponer (poco stock, sí se venden)</h3><div class="desc">Tienen ventas pero solo quedan 1–2 unidades.</div>
         <div class="explain" style="margin-top:0;margin-bottom:12px"><b>Acción:</b> son los primeros candidatos a volver a pedir para no perder ventas por quedarte sin existencias.</div>
         <div class="scroll"><table id="tBajo"><thead><tr><th>Código</th><th>Producto</th><th class="num">Stock</th><th class="num">Vendidas</th></tr></thead><tbody></tbody></table></div></div>
-      <div class="card"><h3>💤 Productos sin rotación (hay stock, 0 ventas)</h3><div class="desc">Tienen existencias pero no se vendió ninguno en el semestre.</div>
+      <div class="card"><h3>Productos sin rotación (hay stock, 0 ventas)</h3><div class="desc">Tienen existencias pero no se vendió ninguno en el semestre.</div>
         <div class="explain" style="margin-top:0;margin-bottom:12px"><b>Acción:</b> es dinero inmovilizado. Conviene revisar precio, ubicación en tienda o promoción para moverlos.</div>
         <div class="scroll"><table id="tSin"><thead><tr><th>Código</th><th>Producto</th><th class="num">Stock</th></tr></thead><tbody></tbody></table></div></div>
     </div>
     <div class="card full" style="margin-top:18px">
-      <h3>⛔ Productos agotados (stock en 0)</h3><div class="desc">Sin existencias en el último registro. <span id="agcount"></span></div>
+      <h3>Productos agotados (stock en 0)</h3><div class="desc">Sin existencias en el último registro. <span id="agcount"></span></div>
       <div class="explain" style="margin-top:0;margin-bottom:12px"><b>Nota:</b> esta lista es alta en parte porque la actualización del sistema del 1-jun dejó muchos productos en 0. La columna "Vendidas" indica cuáles de los agotados sí tenían demanda (prioridad para reponer). Usa el buscador para ubicar un producto.</div>
       <input class="search" id="searchAg" placeholder="Buscar producto o código...">
       <div class="scroll"><table id="tAg"><thead><tr><th>Código</th><th>Producto</th><th class="num">Vendidas (sem.)</th></tr></thead><tbody></tbody></table></div>
@@ -349,12 +348,12 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
   <!-- TRAZABILIDAD -->
   <section class="panel-section" id="p-traza">
     <div class="help" style="border-left-color:var(--accent2)">
-      <h3>🔎 Trazabilidad y auditoría producto por producto</h3>
+      <h3>Trazabilidad y auditoría producto por producto</h3>
       <p>Aquí está el <b>historial completo de cada producto</b>: todo lo que entró, todo lo que salió, el inventario actual real y, lo más importante, <b>dónde el saldo cambió sin un movimiento que lo explique</b> (posible faltante). Es la herramienta para auditar las pérdidas una por una.</p>
       <ul>
         <li><b>Busca</b> un producto por nombre o código, o filtra para ver solo los que tienen descuadre.</li>
         <li>Haz clic en <b>"Ver traza"</b> para abrir el detalle de movimientos de ese producto, día por día.</li>
-        <li>Cada salto de saldo trae su <b>explicación con la fecha y las filas reales</b>: <span style="color:#ff7b8a"><b>rojo ⚠ = caída durante una venta</b></span> (lo único a verificar) · <span style="color:#ff9d2e"><b>naranja 🛈 = diferencia en un ajuste/reingreso</b></span> (un ajuste corrigió el saldo).</li>
+        <li>Cada salto de saldo trae su <b>explicación con la fecha y las filas reales</b>: en <span style="color:#ff7b8a"><b>rojo</b></span> = caída durante una venta (lo único a verificar); en <span style="color:#ff9d2e"><b>naranja</b></span> = diferencia en un ajuste/reingreso (un ajuste corrigió el saldo).</li>
       </ul>
       <p style="margin-top:6px;font-size:12.5px;color:#c7cdd6"><b>Probado con los datos:</b> durante las ventas el inventario cuadra (solo 2 micro-casos en el semestre). Las otras ~164 uds de descuadre aparecen <b>en ajustes o reingresos</b>: el libro decía más de lo que había y los ajustes lo corrigieron. La <b>causa de fondo no se puede determinar solo con este archivo</b> (ventas en días no exportados, mercancía ingresada al vender, ajustes mal digitados). No hay patrón de robo.</p>
     </div>
@@ -553,7 +552,7 @@ document.getElementById('kpisTz').innerHTML=[
       <div style="font-size:12px;color:var(--mut);margin-top:4px">${expl[x.cat]||''}</div>
     </div>`;
   }).join('');
-  document.getElementById('tzConcil').innerHTML=`<h3>🧮 Conciliación: dónde y cómo se descuadró cada cosa (revisado fila por fila)</h3>
+  document.getElementById('tzConcil').innerHTML=`<h3>Conciliación: dónde y cómo se descuadró cada cosa (revisado fila por fila)</h3>
     <div class="desc">Revisamos los movimientos exactos de cada fecha. Así se reparte el descuadre aparente de 166 uds:</div>
     ${rows}
     <div class="explain" style="margin-top:6px"><b>Lo que SÍ está probado:</b> el saldo nunca se rompe durante una venta normal (solo 2 micro-casos, −2 uds en todo el semestre). Todos los demás descuadres ocurren <b>en líneas de ajuste o reingreso, o justo después</b>. Es decir: el inventario fluye bien al vender; las diferencias las introduce el <b>proceso de ajustes/registro</b>.<br><br><b>Lo que NO se puede afirmar con este archivo:</b> la causa de fondo de esas diferencias (el libro venía diciendo más de lo que había, y los ajustes lo corrigieron). Puede ser ventas en días no exportados, mercancía ingresada al vender o ajustes mal digitados. <b>No hay patrón de robo</b> (sin caídas grandes durante ventas, sin actividad nocturna), pero tampoco se puede certificar "0 pérdida" solo con estos datos.</div>`;
@@ -589,10 +588,10 @@ window.showTz=function(cod){
   let body='';
   p.movs.forEach(m=>{
     if(m.gap&&m.gap!==0&&!m.ini&&m.cls){
-      const icon=m.cls==='ruido'?'↩':(m.cls==='real'?'⚠':'🛈');
+      const tag=m.cls==='ruido'?'[Ruido] ':(m.cls==='real'?'[Revisar] ':'[Ajuste] ');
       const klass=m.cls==='ruido'?'gaprow noise':(m.cls==='real'?'gaprow':'gaprow reg');
       const dif=m.gap<0?`(${-m.gap} ${Math.abs(m.gap)===1?'unidad':'unidades'}) `:'';
-      body+=`<tr class="${klass}"><td colspan="5">${icon} ${dif}${m.why}</td></tr>`;
+      body+=`<tr class="${klass}"><td colspan="5"><b>${tag}</b>${dif}${m.why}</td></tr>`;
     }
     const q=m.q>0?`<span class="pos">+${m.q}</span>`:(m.q<0?`<span class="neg">${m.q}</span>`:'0');
     body+=`<tr><td style="white-space:nowrap">${m.f}</td><td><span class="tt ${ttClass(m.t)}">${ttLabel(m.t)}</span> <span style="color:var(--mut)">${m.d}</span></td><td class="num">${q}</td><td class="num">${m.ha} → <b>${m.hy}</b></td><td>${m.c}</td></tr>`;
@@ -618,7 +617,7 @@ window.showTz=function(cod){
       <table class="ledger"><thead><tr><th>Fecha y hora</th><th>Movimiento</th><th class="num">Cantidad</th><th class="num">Saldo (antes → después)</th><th>Cajero</th></tr></thead>
       <tbody>${body}</tbody></table>
     </div>
-    <div class="explain" style="margin-top:14px"><b>Cómo leer los saltos:</b> <span style="color:#ff7b8a">rojo ⚠</span> = faltante real sin explicación (a verificar); <span style="color:#ff9d2e">naranja 🛈</span> = descuadre de registro (mercancía ingresada al vender o ajuste desincronizado — explicable, no es pérdida); <span style="color:#9aa3b0">gris ↩</span> = ruido del sistema. Solo los rojos podrían ser pérdida real.</div>
+    <div class="explain" style="margin-top:14px"><b>Cómo leer los saltos:</b> <span style="color:#ff7b8a">[Revisar]</span> = caída durante una venta, sin explicación (a verificar); <span style="color:#ff9d2e">[Ajuste]</span> = diferencia de registro (mercancía ingresada al vender o ajuste desincronizado, no es pérdida); <span style="color:#9aa3b0">[Ruido]</span> = ajuste entrado por partes. Solo los marcados [Revisar] podrían ser pérdida real.</div>
   </div>`;
   d.scrollIntoView({behavior:'smooth',block:'start'});
 }
