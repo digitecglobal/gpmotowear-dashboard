@@ -553,7 +553,7 @@ window.showTz=function(cod){
     const q=m.q>0?`<span class="pos">+${m.q}</span>`:(m.q<0?`<span class="neg">${m.q}</span>`:'0');
     body+=`<tr><td style="white-space:nowrap">${m.f}</td><td><span class="tt ${ttClass(m.t)}">${ttLabel(m.t)}</span> <span style="color:var(--mut)">${m.d}</span></td><td class="num">${q}</td><td class="num">${m.ha} → <b>${m.hy}</b></td><td>${m.c}</td></tr>`;
   });
-  const rec=(p.rec!==null&&p.rec!==undefined)?`<div>Carga del sistema 1-jun vs libro previo<b style="color:${p.rec<0?'var(--red)':p.rec>0?'var(--green)':'var(--txt)'}">${p.rec>0?'+':''}${p.rec} uds</b></div>`:'';
+  const rec='';
   const d=document.getElementById('tzDetail');
   d.innerHTML=`<div class="tzdetail-card">
     <div class="tzdetail-head">
