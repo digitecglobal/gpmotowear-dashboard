@@ -191,15 +191,15 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
   <section class="panel-section active" id="p-auditoria">
     <div class="verdict">
       <span class="tag">DIAGNÓSTICO Y PLAN EN EJECUCIÓN</span>
-      <h2>En las ventas el inventario cuadra. La merma real de 2026 es de ~$576.000 (24 uds netas), detectada en los conteos físicos —sobre todo el 15-may—, y las acciones de control ya están en marcha.</h2>
-      <p>Esta versión usa el <b>kardex completo del sistema</b> (leído directo de la base, no de los archivos diarios), con <b>todo valorizado en dinero</b>. Durante las ventas el inventario cuadra: el faltante en ventas es de apenas <b>2 unidades</b>. La pérdida real aparece en los <b>ajustes a la baja</b>: <b>64 uds dadas de baja ($1.97M a costo)</b>, contra 40 uds que aparecieron de más, dejando una <b>merma neta de ~24 uds (~$576.000 a costo)</b>. El grueso salió el <b>15-may en un conteo físico</b> (41 uds, $1.68M). El inventario al 1-jun es de <b>587 uds ($17.1M a costo / $34.1M a venta)</b> y las ventas del año suman <b>~$46M</b>. <b>Como administrador ya tomé el control directo del inventario:</b> soy la única persona que realiza los ajustes —con mi usuario personal— y superviso recepción, conteos y bajas. La acción en curso es revisar con soporte físico cada baja por ajuste, empezando por las de mayor valor.</p>
+      <h2>En las ventas el inventario cuadra. La merma real de 2026 es de 24 unidades netas, detectada en los conteos físicos —sobre todo el 15-may—, y las acciones de control ya están en marcha.</h2>
+      <p>Esta versión usa el <b>kardex completo del sistema</b> (leído directo de la base, no de los archivos diarios). Durante las ventas el inventario cuadra: el faltante en ventas es de apenas <b>2 unidades</b>. La pérdida real aparece en los <b>ajustes a la baja</b>: <b>64 unidades dadas de baja</b>, contra 40 que aparecieron de más, dejando una <b>merma neta de 24 unidades</b>. El grueso salió el <b>15-may en un conteo físico</b> (41 uds). El inventario al 1-jun es de <b>587 unidades</b> en 271 productos, y en 2026 se vendieron <b>838 unidades</b> en 801 transacciones, con <b>679 unidades de entrada</b>. <b>Como administrador ya tomé el control directo del inventario:</b> soy la única persona que realiza los ajustes —con mi usuario personal— y superviso recepción, conteos y bajas. La acción en curso es contar físicamente y explicar cada baja por ajuste, empezando por las de mayor cantidad.</p>
     </div>
 
     <div class="kpis">
-      <div class="kpi red bigkpi"><div class="v">$576 mil</div><div class="l">Merma neta de inventario 2026 (a costo)</div></div>
+      <div class="kpi red bigkpi"><div class="v">24 uds</div><div class="l">Merma neta de inventario 2026 (64 baja − 40 alza)</div></div>
       <div class="kpi amber bigkpi"><div class="v">2 uds</div><div class="l">Faltante durante ventas (el resto cuadra)</div></div>
-      <div class="kpi accent bigkpi"><div class="v">$17.1M</div><div class="l">Inventario al 1-jun (a costo)</div></div>
-      <div class="kpi blue bigkpi"><div class="v">$46M</div><div class="l">Ventas 2026 (recuperadas del sistema)</div></div>
+      <div class="kpi accent bigkpi"><div class="v">587 uds</div><div class="l">Inventario al 1-jun (271 productos)</div></div>
+      <div class="kpi blue bigkpi"><div class="v">838 uds</div><div class="l">Unidades vendidas en 2026 (801 ventas)</div></div>
     </div>
 
     <div class="sevgroup">
@@ -264,7 +264,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
       <div class="actitem"><span class="n">2</span><span class="pr hecho">HECHO</span><span class="txt">Cada empleado opera con su propio usuario y clave; yo superviso y reviso los movimientos.<small>En operación desde hace 15 días</small></span></div>
       <div class="actitem"><span class="n">3</span><span class="pr hecho">HECHO</span><span class="txt">Implementé un respaldo semanal con los movimientos de todos los días, sin huecos.<small>En operación</small></span></div>
       <div class="actitem"><span class="n">4</span><span class="pr curso">EN CURSO</span><span class="txt">Registro la mercancía al recibirla (no al vender) y hago cada ajuste como una sola línea por producto, usando el Kárdex como saldo oficial.<small>En aplicación diaria</small></span></div>
-      <div class="actitem"><span class="n">5</span><span class="pr curso">EN CURSO</span><span class="txt">Reviso con soporte físico las bajas por ajuste (merma ~$576K neto), empezando por las de mayor valor (pestaña Trazabilidad, orden "mayor merma $").<small>1–2 semanas</small></span></div>
+      <div class="actitem"><span class="n">5</span><span class="pr curso">EN CURSO</span><span class="txt">Cuento físicamente y explico las bajas por ajuste (merma neta 24 uds), empezando por las de mayor cantidad (pestaña Trazabilidad, orden "mayor merma").<small>1–2 semanas</small></span></div>
       <div class="actitem"><span class="n">6</span><span class="pr curso">EN CURSO</span><span class="txt">Cargo precios/costos por producto para valorar el inventario y cualquier diferencia futura en dinero.<small>1 mes</small></span></div>
     </div>
 
@@ -277,10 +277,9 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
     <div class="ctxbox">
       <b>Sustento del análisis — fuente y alcance:</b><br>
       • <b>Fuente definitiva:</b> esta versión se construyó leyendo <b>directamente la base de datos del sistema (kardex completo de 2026)</b>, no los archivos diarios que estaban incompletos. Por eso las cifras corrigen versiones anteriores.<br>
-      • <b>Valorizado en dinero:</b> con los costos y precios del propio sistema, ahora cada unidad de inventario y cada merma se expresa en pesos.<br>
-      • <b>Ventas en las ventas cuadran:</b> el faltante durante ventas es de solo <b>2 uds</b>.<br>
-      • <b>La merma está en los ajustes a la baja:</b> <b>64 uds / $1.97M a costo</b> dadas de baja (40 uds aparecieron de más), <b>neto ~24 uds / ~$576.000</b>. Concentrada en el conteo físico del <b>15-may</b>.<br>
-      • <b>Qué falta verificar:</b> el dato dice cuánto y cuándo se ajustó, pero no la causa de cada baja (daño, devolución a proveedor, mal registro o pérdida). Eso se confirma con soporte físico, empezando por las bajas de mayor valor.
+      • <b>El inventario en las ventas cuadra:</b> el faltante durante ventas es de solo <b>2 unidades</b>.<br>
+      • <b>La merma está en los ajustes a la baja:</b> <b>64 unidades dadas de baja</b> (40 aparecieron de más), <b>neto 24 unidades</b>. Concentrada en el conteo físico del <b>15-may</b> (41 uds).<br>
+      • <b>Qué falta verificar:</b> el dato dice cuánto y cuándo se ajustó, pero no la causa de cada baja (daño, devolución a proveedor, mal registro o pérdida). Eso se confirma con conteo físico, empezando por las bajas de mayor cantidad.
     </div>
   </section>
 
@@ -331,7 +330,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
   <section class="panel-section" id="p-traza">
     <div class="help" style="border-left-color:var(--accent2)">
       <h3>Trazabilidad y auditoría producto por producto (2026)</h3>
-      <p>Reconstruido directamente del <b>kardex del sistema</b> (no de los archivos diarios). Para cada producto: stock al iniciar 2026, lo que entró, lo que se vendió, los ajustes y el stock final al 1-jun, todo <b>valorizado en dinero</b>.</p>
+      <p>Reconstruido directamente del <b>kardex del sistema</b> (no de los archivos diarios). Para cada producto: stock al iniciar 2026, lo que entró, lo que se vendió, los ajustes y el stock final al 1-jun, todo en <b>unidades</b>.</p>
       <ul>
         <li><b>Busca</b> un producto por nombre o código, o filtra por los que tuvieron merma.</li>
         <li>La columna <b>"Merma por ajuste"</b> es la mercancía que se dio de baja con un ajuste (no por venta): es la pérdida real a explicar.</li>
@@ -340,7 +339,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
     </div>
 
     <div class="kpis" id="kpisTz"></div>
-    <div class="explain"><b>Qué significan:</b> "Entradas" y "Ventas" = unidades del 2026; "Inventario actual" = piezas y su valor al 1-jun; <b>"Merma por ajuste"</b> = unidades dadas de baja con ajustes (la pérdida real), valorizada a costo; <b>"Faltante en ventas"</b> = unidades que cayeron durante una venta sin explicación (mínimo).</div>
+    <div class="explain"><b>Qué significan:</b> "Entradas" y "Ventas" = unidades del 2026; "Stock 1-jun" = piezas disponibles; <b>"Merma por ajuste"</b> = unidades dadas de baja con ajustes (la pérdida real); <b>"Faltante en ventas"</b> = unidades que cayeron durante una venta sin explicación (mínimo).</div>
 
     <div class="card full" id="tzConcil" style="margin-top:18px"></div>
 
@@ -354,19 +353,19 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
           <option value="stock">Solo con stock &gt; 0</option>
         </select>
         <select id="tzSort" class="search" style="width:auto;margin-bottom:0">
-          <option value="merma">Ordenar: mayor merma ($)</option>
+          <option value="merma">Ordenar: mayor merma (uds)</option>
           <option value="ven">Ordenar: más vendidos</option>
           <option value="stk">Ordenar: más stock</option>
           <option value="cod">Ordenar: código</option>
         </select>
       </div>
-      <div class="explain" style="margin-top:0;margin-bottom:10px"><b>Cada fila cuadra exacto:</b> Stock inicial + Entradas − Ventas + Devoluciones + Ajuste neto = Stock al 1-jun. La <b>"Merma por ajuste"</b> es la parte del ajuste que bajó el stock (la pérdida), valorizada al costo del producto.</div>
+      <div class="explain" style="margin-top:0;margin-bottom:10px"><b>Cada fila cuadra exacto:</b> Stock inicial + Entradas − Ventas + Devoluciones + Ajuste neto = Stock al 1-jun. La <b>"Merma por ajuste"</b> es la parte del ajuste que bajó el stock (la pérdida), en unidades.</div>
       <div class="howto" id="tzCount" style="margin-top:0;margin-bottom:10px"></div>
       <div class="scroll" style="max-height:520px">
         <table id="tzTable"><thead><tr>
           <th>Código</th><th>Producto</th>
           <th class="num">Stock inicial</th><th class="num">Entradas</th><th class="num">Ventas</th><th class="num">Devol.</th><th class="num">Ajuste neto</th>
-          <th class="num">Stock 1-jun</th><th class="num">Merma ajuste (uds)</th><th class="num">Merma a costo</th><th></th>
+          <th class="num">Stock 1-jun</th><th class="num">Merma por ajuste (uds)</th><th></th>
         </tr></thead><tbody></tbody></table>
       </div>
     </div>
@@ -377,16 +376,16 @@ footer{color:var(--mut);font-size:12px;text-align:center;margin-top:30px;padding
   <!-- AJUSTES -->
   <section class="panel-section" id="p-ajustes">
     <div class="help" style="border-left-color:var(--accent2)"><p style="margin:0">Un <b>ajuste</b> es una corrección manual del stock que se hace tras contar físicamente. Esta sección responde: <b>¿cuánto y en qué dirección se corrigió el inventario?</b> Es clave para detectar descuadres.</p></div>
-    <div class="note"><b>Dato importante:</b> el efecto real de cada ajuste se mide como saldo final menos saldo inicial (el sistema a veces guarda mal el signo). Medido así sobre el kardex real de 2026: <b>64 uds se dieron de BAJA ($1.97M a costo)</b> y <b>40 uds se sumaron al ALZA</b>, dejando una <b>merma neta de ~24 uds (~$576.000)</b>. La mayoría salió en el conteo físico del <b>15-may</b>. El detalle por producto está en la pestaña <b>Trazabilidad</b>.</div>
+    <div class="note"><b>Dato importante:</b> el efecto real de cada ajuste se mide como saldo final menos saldo inicial (el sistema a veces guarda mal el signo). Medido así sobre el kardex real de 2026: <b>64 unidades se dieron de BAJA</b> y <b>40 se sumaron al ALZA</b>, dejando una <b>merma neta de 24 unidades</b>. La mayoría salió en el conteo físico del <b>15-may</b>. El detalle por producto está en la pestaña <b>Trazabilidad</b>.</div>
     <div class="kpis" id="kpisAj"></div>
     <div class="help" style="border-left-color:var(--accent2);margin-top:14px">
       <h3>Punto clave: la merma del año aparece en los ajustes, no en las ventas</h3>
       <ul>
         <li>El faltante durante ventas es mínimo (<b>2 uds</b>): el inventario en las ventas cuadra.</li>
-        <li>Donde se ve la pérdida es en las <b>bajas por ajuste</b> tras los conteos físicos: <b>64 uds / $1.97M a costo</b> (neto ~24 uds / ~$576.000).</li>
-        <li>El conteo del <b>15-may</b> concentró el grueso: 41 uds de baja ($1.68M), casi todo de 1 unidad por producto.</li>
+        <li>Donde se ve la pérdida es en las <b>bajas por ajuste</b> tras los conteos físicos: <b>64 unidades</b> de baja (neto 24 uds tras restar 40 de alza).</li>
+        <li>El conteo del <b>15-may</b> concentró el grueso: 41 uds de baja, casi todo de 1 unidad por producto.</li>
       </ul>
-      <p style="margin-top:6px"><b>Qué significa:</b> al contar físicamente apareció <b>menos</b> mercancía de la que el sistema decía en varios productos. Eso es merma real (daño, mal registro o pérdida) y es lo que hay que explicar con soporte físico, empezando por las bajas de mayor valor. No se concentra en las ventas.</p>
+      <p style="margin-top:6px"><b>Qué significa:</b> al contar físicamente apareció <b>menos</b> mercancía de la que el sistema decía en varios productos. Eso es merma real (daño, mal registro o pérdida) y es lo que hay que explicar con conteo físico, empezando por las bajas de mayor cantidad. No se concentra en las ventas.</p>
     </div>
     <div class="grid g2" style="margin-top:18px">
       <div class="card"><h3>Ajustes por mes</h3><div class="desc">Cuántos ajustes se hicieron cada mes: total, positivos (suman) y negativos (restan).</div><div class="chart-box"><canvas id="cAjMes"></canvas></div>
@@ -489,30 +488,30 @@ const fmtM=n=>'$'+Math.round(n||0).toLocaleString('es-CO');
 document.getElementById('kpisTz').innerHTML=[
   ['green',fmt(Math.round(TK.ent)),'Entradas 2026 (uds)'],
   ['blue',fmt(Math.round(TK.ven)),'Ventas 2026 (uds)'],
-  ['accent',fmt(Math.round(TK.stk)),'Stock 1-jun de prod. con mov. ('+fmtM(TK.stk_costo)+')'],
-  ['red',fmtM(TK.ajbaja_costo),'Merma por ajuste a costo ('+Math.round(TK.ajbaja_u)+' uds)'],
+  ['accent',fmt(Math.round(TK.stk)),'Stock 1-jun de prod. con mov. (uds)'],
+  ['red',fmt(Math.round(TK.ajbaja_u)),'Merma por ajuste a la baja (uds)'],
   ['amber',fmt(TK.falt_ventas),'Faltante en ventas (uds)'],
 ].map(([c,v,l])=>`<div class="kpi ${c} bigkpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
 
 // Conciliación
 (function(){
-  const ajb=Math.round(TK.ajbaja_u), ajbc=TK.ajbaja_costo, ajbv=TK.ajbaja_venta, aja=Math.round(TK.ajalza_u), netu=Math.round(TK.merma_neta_u), netc=TK.merma_neta_costo, fv=TK.falt_ventas;
-  document.getElementById('tzConcil').innerHTML=`<h3>Merma de inventario 2026: ${fmtM(netc)} netos (a costo)</h3>
+  const ajb=Math.round(TK.ajbaja_u), aja=Math.round(TK.ajalza_u), netu=Math.round(TK.merma_neta_u), fv=TK.falt_ventas;
+  document.getElementById('tzConcil').innerHTML=`<h3>Merma de inventario 2026: ${netu} unidades netas</h3>
     <div class="desc">El inventario en las ventas cuadra. La pérdida real del 2026 aparece en los ajustes: mercancía que estaba en el sistema y se dio de baja al contar físicamente, no por venta.</div>
     <div style="display:flex;gap:14px;flex-wrap:wrap;margin:14px 0">
       <div style="flex:1;min-width:240px;background:var(--panel2);border:1px solid var(--border);border-left:5px solid #f0506e;border-radius:12px;padding:16px 18px">
-        <div style="font-size:28px;font-weight:900;color:#ff7b8a;line-height:1">${fmtM(ajbc)}</div>
-        <div style="font-size:14px;font-weight:700;margin-top:4px">Merma por ajustes a la baja (${ajb} uds)</div>
-        <div style="font-size:13px;color:var(--mut);margin-top:6px">A precio de venta serían ${fmtM(ajbv)}. El grueso salió en el conteo físico del 15-may (41 uds, $1.68M).</div>
+        <div style="font-size:30px;font-weight:900;color:#ff7b8a;line-height:1">${ajb} uds</div>
+        <div style="font-size:14px;font-weight:700;margin-top:4px">Unidades dadas de baja por ajuste</div>
+        <div style="font-size:13px;color:var(--mut);margin-top:6px">El grueso salió en el conteo físico del 15-may (41 uds), casi todo de 1 unidad por producto.</div>
       </div>
       <div style="flex:1;min-width:240px;background:var(--panel2);border:1px solid var(--border);border-left:5px solid #2ea043;border-radius:12px;padding:16px 18px">
-        <div style="font-size:28px;font-weight:900;color:#56d364;line-height:1">${aja} uds</div>
-        <div style="font-size:14px;font-weight:700;margin-top:4px">Ajustes al alza (sobrantes)</div>
-        <div style="font-size:13px;color:var(--mut);margin-top:6px">Mercancía que apareció de más al contar. Se descuenta de la merma: la pérdida NETA queda en ${netu} uds (${fmtM(netc)}).</div>
+        <div style="font-size:30px;font-weight:900;color:#56d364;line-height:1">${aja} uds</div>
+        <div style="font-size:14px;font-weight:700;margin-top:4px">Unidades que aparecieron de más</div>
+        <div style="font-size:13px;color:var(--mut);margin-top:6px">Sobrantes hallados al contar. Se descuentan de la merma: la pérdida NETA queda en ${netu} unidades.</div>
       </div>
     </div>
     <div class="howto" style="margin-top:2px">Faltante durante ventas: solo ${fv} uds — el inventario en las ventas cuadra.</div>
-    <div class="explain" style="margin-top:10px"><b>En conclusión:</b> la pérdida real de inventario en 2026 es de <b>${netu} uds (~${fmtM(netc)} a costo)</b>, surgida en los conteos físicos —sobre todo el 15-may—, no en las ventas. La acción es revisar con soporte físico las bajas por ajuste, empezando por las de mayor valor (tabla de abajo, ordenada por merma $).</div>`;
+    <div class="explain" style="margin-top:10px"><b>En conclusión:</b> la pérdida real de inventario en 2026 es de <b>${netu} unidades netas</b> (${ajb} de baja menos ${aja} de alza), surgida en los conteos físicos —sobre todo el 15-may—, no en las ventas. La acción es contar físicamente y explicar las bajas por ajuste, empezando por las de mayor cantidad (tabla de abajo).</div>`;
 })();
 
 const ttClass=t=>({'Entrada':'ent','Venta':'sal','Ajuste':'aju','Devolución':'dev'}[t]||'ini');
@@ -523,7 +522,7 @@ function tzRows(){
   if(fil==='merma')arr=arr.filter(p=>p.aj_baja>0);
   else if(fil==='mov')arr=arr.filter(p=>p.nmov>0);
   else if(fil==='stock')arr=arr.filter(p=>p.stk>0);
-  const sorters={merma:(a,b)=>b.merma_costo-a.merma_costo,ven:(a,b)=>b.ven-a.ven,stk:(a,b)=>b.stk-a.stk,cod:(a,b)=>String(a.cod).localeCompare(String(b.cod),'es',{numeric:true})};
+  const sorters={merma:(a,b)=>b.aj_baja-a.aj_baja,ven:(a,b)=>b.ven-a.ven,stk:(a,b)=>b.stk-a.stk,cod:(a,b)=>String(a.cod).localeCompare(String(b.cod),'es',{numeric:true})};
   arr.sort(sorters[sort]); return arr;
 }
 function renderTz(){
@@ -532,9 +531,8 @@ function renderTz(){
   document.querySelector('#tzTable tbody').innerHTML=arr.slice(0,400).map(p=>{
     const ajr=(p.ajr>0?'+':'')+Math.round(p.ajr);
     const merm=p.aj_baja>0?`<span class="pill red">-${Math.round(p.aj_baja)}</span>`:'0';
-    const merc=p.merma_costo>0?fmtM(p.merma_costo):'—';
-    return `<tr class="${p.aj_baja>0?'rowfalt':''}"><td>${p.cod}</td><td>${p.nom}</td><td class="num">${Math.round(p.ini0)}</td><td class="num">${Math.round(p.ent)}</td><td class="num">${Math.round(p.ven)}</td><td class="num">${Math.round(p.dev||0)}</td><td class="num">${ajr}</td><td class="num"><b>${Math.round(p.stk)}</b></td><td class="num">${merm}</td><td class="num">${merc}</td><td><button class="btn-tz" onclick="showTz('${String(p.cod).replace(/'/g,"\\'")}')">Ver traza</button></td></tr>`;
-  }).join('')||'<tr><td colspan="11" style="color:var(--mut);padding:14px">Sin resultados.</td></tr>';
+    return `<tr class="${p.aj_baja>0?'rowfalt':''}"><td>${p.cod}</td><td>${p.nom}</td><td class="num">${Math.round(p.ini0)}</td><td class="num">${Math.round(p.ent)}</td><td class="num">${Math.round(p.ven)}</td><td class="num">${Math.round(p.dev||0)}</td><td class="num">${ajr}</td><td class="num"><b>${Math.round(p.stk)}</b></td><td class="num">${merm}</td><td><button class="btn-tz" onclick="showTz('${String(p.cod).replace(/'/g,"\\'")}')">Ver traza</button></td></tr>`;
+  }).join('')||'<tr><td colspan="10" style="color:var(--mut);padding:14px">Sin resultados.</td></tr>';
   if(arr.length>400) document.getElementById('tzCount').textContent+=' (primeros 400 — usa el buscador)';
 }
 window.showTz=function(cod){
@@ -547,7 +545,7 @@ window.showTz=function(cod){
   const d=document.getElementById('tzDetail');
   d.innerHTML=`<div class="tzdetail-card">
     <div class="tzdetail-head">
-      <div><h3>${p.nom}</h3><div class="sub">Código ${p.cod} · ${p.nmov} movimientos en ${p.ndias} días · costo ${fmtM(p.costo)} · venta ${fmtM(p.venta)}</div></div>
+      <div><h3>${p.nom}</h3><div class="sub">Código ${p.cod} · ${p.nmov} movimientos en ${p.ndias} días</div></div>
       <button class="btn-close" onclick="document.getElementById('tzDetail').innerHTML='';">✕ Cerrar</button>
     </div>
     <div class="tzsum">
@@ -558,7 +556,6 @@ window.showTz=function(cod){
       <div>Ajuste neto<b>${p.ajr>0?'+':''}${Math.round(p.ajr)}</b></div>
       <div>Stock 1-jun<b>${Math.round(p.stk)}</b></div>
       <div>Merma por ajuste<b style="color:${p.aj_baja>0?'var(--red)':'var(--txt)'}">${p.aj_baja>0?'-'+Math.round(p.aj_baja):'0'}</b></div>
-      <div>Merma a costo<b style="color:${p.merma_costo>0?'var(--red)':'var(--txt)'}">${fmtM(p.merma_costo)}</b></div>
     </div>
     <div class="scroll" style="max-height:430px">
       <table class="ledger"><thead><tr><th>Fecha y hora</th><th>Movimiento</th><th class="num">Cantidad</th><th class="num">Saldo (antes → después)</th></tr></thead>
