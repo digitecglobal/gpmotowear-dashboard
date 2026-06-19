@@ -632,7 +632,7 @@ window.showTz=function(cod){
     </div>
   </div>`;
   d.scrollIntoView({behavior:'smooth',block:'start'});
-}
+};
 ['tzSearch','tzFilter','tzSort','tzMes'].forEach(id=>{const el=document.getElementById(id);el.oninput=renderTz;el.onchange=renderTz;});
 renderTz();
 
